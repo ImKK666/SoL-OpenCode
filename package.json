@@ -13,7 +13,8 @@
 		"test": "vitest run",
 		"check": "npm run typecheck && npm test",
 		"e2e": "node apps/e2e/ab.mjs",
-		"e2e:all": "node apps/e2e/ab.mjs baseline && node apps/e2e/ab.mjs observation-pack && node apps/e2e/ab.mjs action-fusion && node apps/e2e/ab.mjs reducer"
+		"e2e:all": "node apps/e2e/ab.mjs baseline && node apps/e2e/ab.mjs observation-pack && node apps/e2e/ab.mjs action-fusion && node apps/e2e/ab.mjs reducer",
+		"e2e:real": "node apps/e2e/real.mjs"
 	},
 	"keywords": [
 		"opencode",

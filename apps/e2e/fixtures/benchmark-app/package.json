@@ -1,0 +1,8 @@
+{
+	"name": "sol-e2e-benchmark-app",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"test": "node --test"
+	}
+}
