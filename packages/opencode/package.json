@@ -25,5 +25,13 @@
 		"access": "public"
 	},
 	"author": "ImKK666",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ImKK666/SoL-OpenCode.git"
+	},
+	"homepage": "https://github.com/ImKK666/SoL-OpenCode#readme",
+	"bugs": {
+		"url": "https://github.com/ImKK666/SoL-OpenCode/issues"
+	},
 	"license": "MIT"
 }
