@@ -31,7 +31,7 @@ DESIGN.md                            — the port design and phased plan
 ## Install
 
 **No `npm install` is required** — OpenCode installs npm plugins itself with Bun
-at startup (cached in `~/.cache/opencode/node_modules/`).
+at startup (cached under `~/.cache/opencode/`).
 
 Add the plugin to your OpenCode config — `opencode.json` in a project, or
 `~/.config/opencode/opencode.json` globally — then restart OpenCode:
@@ -192,6 +192,10 @@ bun run e2e:all     # deterministic mock A/B (baseline/observation-pack/action-f
 bun run e2e:real 5  # real-model A/B, 5 rounds (opencode-go/deepseek-v4.1-flash)
 bun run bench       # dev suite, capability + efficiency gates
 ```
+
+## Community
+
+This project acknowledges and links to the [LINUX DO](https://linux.do) community.
 
 ## License
 

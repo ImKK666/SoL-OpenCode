@@ -29,7 +29,7 @@ DESIGN.md                            — 移植设计与分阶段计划
 ## 安装
 
 **不需要 `npm install`。** OpenCode 启动时会用 Bun 自动安装 npm 插件，缓存到
-`~/.cache/opencode/node_modules/`。
+`~/.cache/opencode/` 下。
 
 把插件加进 OpenCode 配置即可——项目级用根目录的 `opencode.json`，全局用
 `~/.config/opencode/opencode.json`——然后重启 OpenCode：
@@ -183,6 +183,10 @@ bun run e2e:all     # 确定性 mock A/B（baseline/observation-pack/action-fusi
 bun run e2e:real 5  # 真实模型 A/B，5 轮（opencode-go/deepseek-v4.1-flash）
 bun run bench       # dev 套件，能力门 + 效率门
 ```
+
+## 社区
+
+本项目认可并链接 [LINUX DO](https://linux.do) 社区。
 
 ## 许可证
 

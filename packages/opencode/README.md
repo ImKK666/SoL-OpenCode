@@ -80,7 +80,7 @@ npx -p @alicekk/sol-opencode sol-trajectory sessions
 ## Install
 
 **No `npm install` step.** OpenCode installs npm plugins itself with Bun at
-startup and caches them in `~/.cache/opencode/node_modules/`.
+startup and caches them under `~/.cache/opencode/`.
 
 Add the plugin to your OpenCode config:
 
@@ -185,6 +185,10 @@ npx -p @alicekk/sol-opencode sol-trajectory tail <session-path>       # follow e
 - Everything else runs locally.
 
 See `SECURITY.md` in the repository for the full data-flow description.
+
+## Community
+
+This project acknowledges and links to the [LINUX DO](https://linux.do) community.
 
 ## License
 
