@@ -1,5 +1,7 @@
 # @alicekk/sol-opencode
 
+[简体中文](https://github.com/ImKK666/SoL-OpenCode/blob/main/README.md) | **English**
+
 An [OpenCode](https://opencode.ai) plugin that ports the five token-efficiency
 mechanisms from NVIDIA's [SoL-Pi](https://github.com/NVlabs/SoL-Pi).
 
