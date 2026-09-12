@@ -27,16 +27,24 @@ nothing until you enable at least one.
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
+  "compaction": { "auto": false },
   "plugin": [
     ["@alicekk/sol-opencode", {
-      "observationPack": { "enabled": true }
+      "trajectoryInspector": { "enabled": true },
+      "actionFusion": { "enabled": true },
+      "observationPack": { "enabled": true },
+      "evidencePreservingReducer": { "enabled": true },
+      "onlineContextCompact": { "enabled": true }
     }]
   ]
 }
 ```
 
-重启 OpenCode 生效。**五个机制默认全部关闭**，只写 `"@alicekk/sol-opencode"`
-（字符串形式）则一个都不开。选项写在 `["包名", { … }]` 元组的**第二项**。
+上面是**五个机制全开**。`compaction.auto: false` 是 `onlineContextCompact`
+生效的前提。重启 OpenCode 生效。
+
+**插件本身默认全部关闭**，只写 `"@alicekk/sol-opencode"`（字符串形式）则一个都不开；
+上面的全开是你显式配置的结果。选项写在 `["包名", { … }]` 元组的**第二项**。
 
 想最省心地起步，只开这两个（都不改写工具输出内容）：
 
@@ -90,17 +98,24 @@ Add the plugin to your OpenCode config:
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
+  "compaction": { "auto": false },
   "plugin": [
     ["@alicekk/sol-opencode", {
-      "observationPack": { "enabled": true }
+      "trajectoryInspector": { "enabled": true },
+      "actionFusion": { "enabled": true },
+      "observationPack": { "enabled": true },
+      "evidencePreservingReducer": { "enabled": true },
+      "onlineContextCompact": { "enabled": true }
     }]
   ]
 }
 ```
 
-Restart OpenCode. The plugin's options are the **second element** of the
-`["package", { … }]` tuple; a string-only entry (`"@alicekk/sol-opencode"`) loads
-the plugin with every mechanism off.
+Restart OpenCode. That enables **all five mechanisms**; `compaction.auto: false`
+is what lets `onlineContextCompact` work without competing with the built-in
+compaction. Options are the **second element** of the `["package", { … }]` tuple,
+and a string-only entry (`"@alicekk/sol-opencode"`) loads the plugin with every
+mechanism off — the plugin defaults to fully off.
 
 ## Enable mechanisms
 

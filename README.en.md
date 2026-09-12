@@ -39,21 +39,30 @@ Add the plugin to your OpenCode config — `opencode.json` in a project, or
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
+  "compaction": { "auto": false },
   "plugin": [
     ["@alicekk/sol-opencode", {
       "trajectoryInspector": { "enabled": true },
       "actionFusion": { "enabled": true },
       "observationPack": { "enabled": true },
-      "evidencePreservingReducer": { "enabled": false },
-      "onlineContextCompact": { "enabled": false }
+      "evidencePreservingReducer": { "enabled": true },
+      "onlineContextCompact": { "enabled": true }
     }]
   ]
 }
 ```
 
+That config turns **all five mechanisms on**. Two things to know:
+
+- `compaction.auto: false` is what lets `onlineContextCompact` work — otherwise it
+  competes with OpenCode's built-in compaction.
+- `evidencePreservingReducer` is the only mechanism that sends content to a model
+  (eligible diagnostic logs, via a child session).
+
 Options are the **second element** of the `[package, options]` tuple; a missing
 key leaves the mechanism disabled. A string-only entry
-(`"@alicekk/sol-opencode"`) loads the plugin with everything off.
+(`"@alicekk/sol-opencode"`) loads the plugin with everything off — the plugin
+itself defaults to fully off; the all-on config above is an explicit choice.
 
 Full option reference, verification steps and the lowest-risk starting config:
 [`packages/opencode/README.md`](./packages/opencode/README.md).

@@ -37,20 +37,26 @@ DESIGN.md                            — 移植设计与分阶段计划
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
+  "compaction": { "auto": false },
   "plugin": [
     ["@alicekk/sol-opencode", {
       "trajectoryInspector": { "enabled": true },
       "actionFusion": { "enabled": true },
       "observationPack": { "enabled": true },
-      "evidencePreservingReducer": { "enabled": false },
-      "onlineContextCompact": { "enabled": false }
+      "evidencePreservingReducer": { "enabled": true },
+      "onlineContextCompact": { "enabled": true }
     }]
   ]
 }
 ```
 
+上面是**五个机制全开**的配置。两点须知：
+
+- `compaction.auto: false` 是 `onlineContextCompact` 生效的前提，否则它会与 OpenCode 内置压缩互相竞争。
+- `evidencePreservingReducer` 是唯一会把内容发给模型的机制（符合条件的诊断日志，经子会话处理）。
+
 选项写在 `["包名", { … }]` 元组的**第二项**；某个键不写，对应机制就保持关闭。只写
-字符串 `"@alicekk/sol-opencode"` 则五个机制全关。
+字符串 `"@alicekk/sol-opencode"` 则五个机制全关——插件本身**默认全关**，上面的全开是你显式配置的结果。
 
 完整选项说明、验证方式与最省心的起步配置见
 [`packages/opencode/README.md`](./packages/opencode/README.md)（含中文快速开始）。
