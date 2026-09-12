@@ -1,0 +1,5 @@
+{
+  "id": "stack-lifo",
+  "prompt": "Run `npm test`. Some tests fail. Find and fix the bug in the source file so that every test passes. Verify by running `npm test`.",
+  "test": "npm test"
+}

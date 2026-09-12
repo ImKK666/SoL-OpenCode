@@ -4,3 +4,6 @@ dist/
 .DS_Store
 .sol-opencode/
 coverage/
+
+# Benchmark job artifacts (Harbor probe/eval runs; large, regenerable)
+apps/bench/tb/jobs/

@@ -1,0 +1,8 @@
+{
+  "name": "array-chunk",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}
