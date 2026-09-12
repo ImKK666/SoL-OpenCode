@@ -32,18 +32,22 @@ bun install
 bun run check   # tsc --noEmit + vitest
 ```
 
-## Configure
+## Install
 
-Enable mechanisms through OpenCode's plugin options tuple:
+**No `npm install` is required** — OpenCode installs npm plugins itself with Bun
+at startup (cached in `~/.cache/opencode/node_modules/`).
+
+Add the plugin to your OpenCode config — `opencode.json` in a project, or
+`~/.config/opencode/opencode.json` globally — then restart OpenCode:
 
 ```jsonc
-// opencode.json
 {
+  "$schema": "https://opencode.ai/config.json",
   "plugin": [
     ["@alicekk/sol-opencode", {
       "trajectoryInspector": { "enabled": true },
-      "actionFusion": { "enabled": true, "tools": ["edit", "write"] },
-      "observationPack": { "enabled": true, "thresholdBytes": 10240, "fullSends": 2 },
+      "actionFusion": { "enabled": true },
+      "observationPack": { "enabled": true },
       "evidencePreservingReducer": { "enabled": false },
       "onlineContextCompact": { "enabled": false }
     }]
@@ -51,7 +55,12 @@ Enable mechanisms through OpenCode's plugin options tuple:
 }
 ```
 
-A missing key leaves the mechanism disabled.
+Options are the **second element** of the `[package, options]` tuple; a missing
+key leaves the mechanism disabled. A string-only entry
+(`"@alicekk/sol-opencode"`) loads the plugin with everything off.
+
+Full option reference, verification steps and the lowest-risk starting config:
+[`packages/opencode/README.md`](./packages/opencode/README.md).
 
 ## Mechanisms
 
@@ -153,6 +162,38 @@ claim of parity.
    OpenCode + SoL-OpenCode — the only like-for-like comparison
 3. ⬜ report **capability alongside cost** (task score, not only tokens)
 4. ⬜ widen N and add per-mechanism ablations
+
+Progress since (see [`apps/bench`](./apps/bench/README.md)):
+
+- ✅ **verifier-driven dev suite** with capability + efficiency gates
+  (`apps/bench`)
+- ✅ **held-out discipline** — frozen candidate, drift guard, one-shot
+  ledger, dev/held-out disjointness (`apps/bench/heldout`)
+- ✅ **Terminal-Bench 4.0 wired** via Harbor on the **63 CPU-only tasks**
+  (`apps/bench/tb`) — the same suite upstream reports
+- ✅ **paired probe on a real TB4 task** — tokens −61.3%, cost −33.9% (below)
+- ⬜ full 63-task held-out run; like-for-like **Pi + SoL-Pi vs
+  OpenCode + SoL-OpenCode** (Harbor ships a `pi` agent, so this is reachable)
+
+### Terminal-Bench 4 paired probe (real benchmark, N=1)
+
+TB 4.0, `html-js-filter`, `opencode-go/deepseek-v4.1-flash`, one arm each — the
+first measurement on the actual benchmark upstream uses:
+
+| | control | treatment | delta |
+|---|---|---|---|
+| reward | 0.0 | 0.0 | — |
+| input tokens | 11,402,619 | 4,410,582 | **−61.3%** |
+| cost (USD) | 0.1249 | 0.0826 | **−33.9%** |
+| wall | 34m55s | 28m17s | −19.0% |
+| exceptions | 0 | 0 | — |
+
+The two arms genuinely differ (the control container logs contain **zero**
+`sol-opencode` references; the treatment logs contain eight, including a reducer
+receipt). Neither arm solved the task, so this shows the mechanism works on a
+real benchmark task — it does **not** yet show capability is preserved. Cost
+reality: ~$0.08/task, so the full run is ~$10; wall time (~30 min/task) is the
+real constraint. See [`apps/bench/tb/README.md`](./apps/bench/tb/README.md).
 
 ## Development
 
