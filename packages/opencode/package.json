@@ -1,0 +1,29 @@
+{
+	"name": "@alicekk/sol-opencode",
+	"version": "0.1.0",
+	"type": "module",
+	"description": "OpenCode plugin porting SoL-Pi's context and tool-efficiency mechanisms",
+	"files": [
+		"src",
+		"bin"
+	],
+	"main": "src/index.ts",
+	"exports": {
+		".": "./src/index.ts"
+	},
+	"bin": {
+		"sol-trajectory": "./bin/sol-trajectory.mjs"
+	},
+	"dependencies": {
+		"@alicekk/sol-opencode-core": "^0.1.0",
+		"@opencode-ai/plugin": "^1.18.30"
+	},
+	"engines": {
+		"node": ">=22.19.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"author": "ImKK666",
+	"license": "MIT"
+}

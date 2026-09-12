@@ -1,0 +1,31 @@
+{
+	"name": "sol-opencode",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"description": "OpenCode plugin porting SoL-Pi's context and tool-efficiency mechanisms",
+	"workspaces": [
+		"packages/*",
+		"apps/*"
+	],
+	"scripts": {
+		"typecheck": "tsc --noEmit",
+		"test": "vitest run",
+		"check": "npm run typecheck && npm test"
+	},
+	"keywords": [
+		"opencode",
+		"opencode-plugin",
+		"context-management",
+		"token-efficiency"
+	],
+	"engines": {
+		"node": ">=22.19.0"
+	},
+	"devDependencies": {
+		"@types/node": "24.12.4",
+		"typescript": "5.9.3",
+		"vitest": "4.1.9"
+	},
+	"license": "MIT"
+}

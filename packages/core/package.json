@@ -1,0 +1,22 @@
+{
+	"name": "@alicekk/sol-opencode-core",
+	"version": "0.1.0",
+	"type": "module",
+	"description": "Harness-agnostic core for SoL-OpenCode (extracted from SoL-Pi)",
+	"files": [
+		"src"
+	],
+	"main": "src/index.ts",
+	"exports": {
+		".": "./src/index.ts",
+		"./*": "./src/*"
+	},
+	"engines": {
+		"node": ">=22.19.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"author": "ImKK666",
+	"license": "MIT"
+}
